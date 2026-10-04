@@ -1,0 +1,462 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f7f8fa;
+    color: #171717;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    height: 70px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    border-bottom: 1px solid #eeeeee;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: #f7931e;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.login-btn {
+    background: #111111;
+    color: white;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.menu-btn {
+    display: none;
+    border: none;
+    background: none;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    background: linear-gradient(
+        135deg,
+        #111111,
+        #222222
+    );
+
+    color: white;
+    padding: 90px 7%;
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.hero-small {
+    color: #f7931e;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: 55px;
+    line-height: 1.05;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: #f7931e;
+}
+
+.hero-text {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #dddddd;
+    max-width: 500px;
+    margin-bottom: 30px;
+}
+
+.hero-btn {
+    background: #f7931e;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section {
+    padding: 70px 7%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-title h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: #777777;
+}
+
+
+/* =========================
+   NETWORKS
+========================= */
+
+.network-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.network-card {
+    background: white;
+    border: 1px solid #eeeeee;
+    border-radius: 15px;
+    padding: 30px;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.network-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.network-logo {
+    width: 65px;
+    height: 65px;
+    margin: auto;
+    margin-bottom: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f7931e;
+    color: white;
+
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.network-card h3 {
+    margin-bottom: 5px;
+}
+
+.network-card p {
+    color: #777777;
+}
+
+
+/* =========================
+   BUNDLES
+========================= */
+
+.bundles-section {
+    background: #ffffff;
+}
+
+.bundle-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.bundle-card {
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 12px;
+    padding: 22px;
+}
+
+.bundle-network {
+    color: #777777;
+    font-size: 13px;
+}
+
+.bundle-size {
+    font-size: 25px;
+    font-weight: 800;
+    margin: 10px 0;
+}
+
+.bundle-price {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.buy-btn {
+    width: 100%;
+    background: #111111;
+    color: white;
+    border: none;
+    padding: 11px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+
+/* =========================
+   HOW IT WORKS
+========================= */
+
+.how-section {
+    padding: 70px 7%;
+    background: #f7f8fa;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.step {
+    text-align: center;
+}
+
+.step-number {
+    width: 45px;
+    height: 45px;
+
+    margin: auto;
+    margin-bottom: 15px;
+
+    background: #f7931e;
+    color: white;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 800;
+}
+
+.step h3 {
+    margin-bottom: 8px;
+}
+
+.step p {
+    color: #777777;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    background: #111111;
+    color: white;
+    padding: 40px 7%;
+    text-align: center;
+}
+
+.footer .logo {
+    margin-bottom: 15px;
+}
+
+.footer p {
+    color: #aaaaaa;
+    font-size: 14px;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,0.6);
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 500;
+}
+
+.modal-box {
+    background: white;
+    width: 90%;
+    max-width: 420px;
+
+    padding: 35px;
+
+    border-radius: 15px;
+
+    position: relative;
+}
+
+.modal-box h2 {
+    margin-bottom: 8px;
+}
+
+.modal-box > p {
+    color: #777777;
+    margin-bottom: 20px;
+}
+
+.modal-box input {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 12px;
+
+    border: 1px solid #dddddd;
+    border-radius: 7px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 13px;
+
+    background: #f7931e;
+    color: white;
+
+    border: none;
+    border-radius: 7px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+
+    border: none;
+    background: none;
+
+    font-size: 25px;
+
+    cursor: pointer;
+}
+
+.signup-text {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.signup-text a {
+    color: #f7931e;
+    font-weight: 700;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
+    .header {
+        padding: 0 5%;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .hero {
+        padding: 65px 5%;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .section {
+        padding: 55px 5%;
+    }
+
+    .network-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bundle-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .steps {
+        grid-template-columns: 1fr 1fr;
+        gap: 35px 15px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .login-btn {
+        padding: 9px 15px;
+    }
+
+    .bundle-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .steps {
+        grid-template-columns: 1fr;
+    }
+
+}
