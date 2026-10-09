@@ -129,13 +129,61 @@ function selectNetwork(network) {
    BUY BUNDLE
 ========================= */
 
+
+let currentOrder = null;
+
 function buyBundle(network, size, price) {
+    currentOrder = { network, size, price };
 
-    alert(
-        `${network} ${size} bundle selected.\n\nPrice: GH₵ ${price.toFixed(2)}\n\nCheckout will be connected later.`
-    );
+    document.getElementById("orderNetwork").textContent = network;
+    document.getElementById("orderSize").textContent = size;
+    document.getElementById("orderPrice").textContent =
+        `GH₵ ${price.toFixed(2)}`;
 
+    document.getElementById("recipientPhone").value = "";
+    document.getElementById("purchaseMessage").textContent = "";
+
+    document.getElementById("purchaseModal").style.display = "flex";
 }
+
+function closePurchase() {
+    document.getElementById("purchaseModal").style.display = "none";
+}
+
+document.getElementById("purchaseForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    if (!currentOrder) return;
+
+    const phone = document.getElementById("recipientPhone")
+        .value.trim();
+
+    const normalizedPhone = phone.replace(/[\s-]/g, "");
+    const validPhone =
+        /^(0\d{9}|\+233\d{9}|233\d{9})$/.test(normalizedPhone);
+
+    const message = document.getElementById("purchaseMessage");
+
+    if (!validPhone) {
+        message.textContent =
+            "Enter a valid Ghanaian phone number, e.g. 0241234567.";
+        message.style.color = "#c62828";
+        return;
+    }
+
+    message.style.color = "#237a3b";
+    message.textContent =
+        `Details checked: ${currentOrder.network} ${currentOrder.size} ` +
+        `for ${normalizedPhone}. Total: GH₵ ${currentOrder.price.toFixed(2)}. ` +
+        "Demo only: no payment or data delivery has occurred.";
+
+    console.log("SYBER MART demo order:", {
+        ...currentOrder,
+        phone: normalizedPhone,
+        status: "Demo — not submitted"
+    });
+});
+
 
 
 /* =========================
