@@ -269,6 +269,45 @@
     </div>
 
 
+    
+<!-- DATA PURCHASE MODAL -->
+<div id="purchaseModal" class="modal">
+    <div class="modal-box">
+        <button class="close-btn" onclick="closePurchase()">×</button>
+
+        <h2>Buy Data Bundle</h2>
+        <p>Confirm your bundle and recipient details.</p>
+
+        <div class="order-summary">
+            <p>Network: <strong id="orderNetwork"></strong></p>
+            <p>Bundle: <strong id="orderSize"></strong></p>
+            <p>Price: <strong id="orderPrice"></strong></p>
+        </div>
+
+        <form id="purchaseForm">
+            <label for="recipientPhone">Recipient phone number</label>
+            <input
+                type="tel"
+                id="recipientPhone"
+                placeholder="e.g. 0241234567"
+                inputmode="tel"
+                autocomplete="tel"
+                required
+            >
+
+            <p id="purchaseMessage" role="status"></p>
+
+            <button type="submit" class="submit-btn">
+                Review Order
+            </button>
+        </form>
+
+        <p class="signup-text">
+            Demo only — no payment will be taken and no data will be sent.
+        </p>
+    </div>
+</div>
+
     <script src="app.js"></script>
 
 </body>
