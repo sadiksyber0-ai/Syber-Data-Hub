@@ -460,3 +460,38 @@ body {
     }
 
 }
+
+/* DATA PURCHASE FORM */
+
+.order-summary {
+    background: #f7f8fa;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.order-summary p {
+    margin: 8px 0;
+    color: #444;
+}
+
+#purchaseForm label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+#purchaseMessage {
+    margin: 10px 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+#purchaseForm .submit-btn {
+    margin-top: 8px;
+}
+
+#purchaseModal .modal-box {
+    max-height: 90vh;
+    overflow-y: auto;
+}
