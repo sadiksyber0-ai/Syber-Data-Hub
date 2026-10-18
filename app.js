@@ -228,6 +228,33 @@ window.addEventListener("click", (event) => {
 
 });
 
+/* =========================
+   CREATE ACCOUNT 
+========================= */
+
+createaccoutBtn.addEventListener("click", () => {
+
+    createaccountModal.style.display = "flex";
+
+});
+
+
+function closesignup() {
+
+    createaccountModal.style.display = "none";
+
+}
+
+
+window.addEventListener("click", (event) => {
+
+    if (event.target === createaccouuntModal) {
+
+        closesSignup();
+
+    }
+
+});
 
 /* =========================
    DEFAULT BUNDLES
