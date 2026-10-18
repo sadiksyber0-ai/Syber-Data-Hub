@@ -22,7 +22,9 @@
             <button id="loginBtn" class="login-btn">
                 Login
             </button>
-
+            <buttun id="createAccountBtn" class="createAccount-btn">
+                Create Account 
+            </button>
             <button id="menuBtn" class="menu-btn">
                 ☰
             </button>
@@ -255,11 +257,61 @@
                 placeholder="Password"
             >
 
-            <button type="button" class="submit-btn" onclick="loginUser()">Login</button>
+            <button
+              type="button"
+              class="submit-btn"
+              onclick="loginUser()"
+            >
+              Login
+            </button>
 
             <p class="signup-text">
                 Don't have an account?
                 <a href="#">Create one</a>
+            </p>
+
+        </div>
+
+    </div>
+    
+    <!-- CREATE ACCOUNT MODAL -->
+    <div id="createaccountmodal" class="modal">
+
+        <div class="modal-box">
+
+            <button class="close-btn" onclick="closesignup()">
+                ×
+            </button>
+
+            <h2>Welcome To Syber Data Hub</h2>
+
+            <p>
+                Signup to your SYBER MART account.
+            </p>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Email address"
+            >
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Password"
+            >
+
+            <button
+              type="button"
+              class="submit-btn"
+              onclick="signupUser()"
+            >
+              Create Account 
+            </button>
+
+            <p class="signup-text">
+                Already have an account?
+                <a href="#">Log in</a>
             </p>
 
         </div>
