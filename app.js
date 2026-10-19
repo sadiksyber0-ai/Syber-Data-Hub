@@ -1,8 +1,9 @@
-import { supabase } from './supabase.js';
+
+import { supabase } from "./supabase.js";
 
 /* =========================================
    SYBER MART - APP.JS
-   Bundles, purchases, login and registration
+   Bundles, demo purchases, login and signup
 ========================================= */
 
 const bundles = {
@@ -26,26 +27,23 @@ const bundles = {
     ]
 };
 
-const bundleContainer = document.getElementById("bundleContainer");
-const selectedNetwork = document.getElementById("selectedNetwork");
+const $ = id => document.getElementById(id);
 
-const loginBtn = document.getElementById("loginBtn");
-const loginModal = document.getElementById("loginModal");
-const signupBtn = document.getElementById("createAccountBtn");
-const signupModal = document.getElementById("createaccountmodal");
+const bundleContainer = $("bundleContainer");
+const selectedNetwork = $("selectedNetwork");
+const loginBtn = $("loginBtn");
+const loginModal = $("loginModal");
+const signupBtn = $("createAccountBtn");
+const signupModal = $("createaccountmodal");
+
+console.log("SYBER MART app.js loaded");
 
 /* =========================================
-   SUPABASE CONNECTION
-   Uses your existing supabase.js file.
+   MESSAGE HELPER
 ========================================= */
 
-
-function getSupabase() {
-    return supabase;
-}
-
 function showMessage(elementId, message, isError = false) {
-    const element = document.getElementById(elementId);
+    const element = $(elementId);
     if (!element) return;
 
     element.textContent = message;
@@ -53,7 +51,7 @@ function showMessage(elementId, message, isError = false) {
 }
 
 /* =========================================
-   SELECT NETWORK
+   NETWORKS AND BUNDLES
 ========================================= */
 
 function selectNetwork(network) {
@@ -62,31 +60,35 @@ function selectNetwork(network) {
         return;
     }
 
-    selectedNetwork.textContent = network + " Data Bundles";
-    bundleContainer.innerHTML = "";
+    selectedNetwork.textContent = `${network} Data Bundles`;
+    bundleContainer.replaceChildren();
 
     bundles[network].forEach(bundle => {
         const card = document.createElement("div");
         card.className = "bundle-card";
 
-        card.innerHTML = `
-            <div class="bundle-network">${network}</div>
-            <div class="bundle-size">${bundle.size}</div>
-            <div class="bundle-price">
-                GH₵ ${bundle.price.toFixed(2)}
-            </div>
-            <button class="buy-btn" type="button">Buy Now</button>
-        `;
+        const networkName = document.createElement("div");
+        networkName.className = "bundle-network";
+        networkName.textContent = network;
 
-        card.querySelector(".buy-btn").addEventListener("click", () => {
+        const size = document.createElement("div");
+        size.className = "bundle-size";
+        size.textContent = bundle.size;
+
+        const price = document.createElement("div");
+        price.className = "bundle-price";
+        price.textContent = `GH₵ ${bundle.price.toFixed(2)}`;
+
+        const button = document.createElement("button");
+        button.className = "buy-btn";
+        button.type = "button";
+        button.textContent = "Buy Now";
+        button.addEventListener("click", () => {
             buyBundle(network, bundle.size, bundle.price);
         });
 
+        card.append(networkName, size, price, button);
         bundleContainer.appendChild(card);
-    });
-
-    document.getElementById("bundles")?.scrollIntoView({
-        behavior: "smooth"
     });
 }
 
@@ -99,71 +101,65 @@ let currentOrder = null;
 function buyBundle(network, size, price) {
     currentOrder = { network, size, price };
 
-    const modal = document.getElementById("purchaseModal");
+    const modal = $("purchaseModal");
     if (!modal) return;
 
-    document.getElementById("orderNetwork").textContent = network;
-    document.getElementById("orderSize").textContent = size;
-    document.getElementById("orderPrice").textContent =
-        `GH₵ ${price.toFixed(2)}`;
-
-    document.getElementById("recipientPhone").value = "";
-    document.getElementById("purchaseMessage").textContent = "";
+    $("orderNetwork").textContent = network;
+    $("orderSize").textContent = size;
+    $("orderPrice").textContent = `GH₵ ${price.toFixed(2)}`;
+    $("recipientPhone").value = "";
+    $("purchaseMessage").textContent = "";
 
     modal.style.display = "flex";
 }
 
 function closePurchase() {
-    const modal = document.getElementById("purchaseModal");
+    const modal = $("purchaseModal");
     if (modal) modal.style.display = "none";
 }
 
-const purchaseForm = document.getElementById("purchaseForm");
+$("purchaseForm")?.addEventListener("submit", event => {
+    event.preventDefault();
 
-if (purchaseForm) {
-    purchaseForm.addEventListener("submit", event => {
-        event.preventDefault();
+    if (!currentOrder) {
+        showMessage("purchaseMessage", "Please select a bundle first.", true);
+        return;
+    }
 
-        if (!currentOrder) return;
+    const phone = $("recipientPhone").value.trim().replace(/[\s-]/g, "");
+    const validPhone = /^(0\d{9}|\+233\d{9}|233\d{9})$/.test(phone);
 
-        const phoneInput = document.getElementById("recipientPhone");
-        const phone = phoneInput.value.trim().replace(/[\s-]/g, "");
-        const validPhone = /^(0\d{9}|\+233\d{9}|233\d{9})$/.test(phone);
-
-        if (!validPhone) {
-            showMessage(
-                "purchaseMessage",
-                "Enter a valid Ghanaian phone number, e.g. 0241234567.",
-                true
-            );
-            return;
-        }
-
+    if (!validPhone) {
         showMessage(
             "purchaseMessage",
-            `Details checked: ${currentOrder.network} ${currentOrder.size} for ${phone}. Total: GH₵ ${currentOrder.price.toFixed(2)}. Demo only: no payment or data delivery has occurred.`
+            "Enter a valid Ghanaian phone number, e.g. 0241234567.",
+            true
         );
+        return;
+    }
 
-        console.log("SYBER MART demo order:", {
-            ...currentOrder,
-            phone,
-            status: "Demo — not submitted"
-        });
+    showMessage(
+        "purchaseMessage",
+        `Details checked: ${currentOrder.network} ${currentOrder.size} for ${phone}. Total: GH₵ ${currentOrder.price.toFixed(2)}. Demo only: no payment or data delivery has occurred.`
+    );
+
+    console.log("SYBER MART demo order:", {
+        ...currentOrder,
+        phone,
+        status: "Demo — not submitted"
     });
-}
+});
 
 /* =========================================
-   SCROLL TO BUNDLES
+   SCROLL
 ========================================= */
 
 function scrollToBundles() {
-    document.getElementById("bundles")?.scrollIntoView({
-        behavior: "smooth"
-    });
+    $("bundles")?.scrollIntoView({ behavior: "smooth" });
 }
 
 /* =========================================
-   OPEN AND CLOSE MODALS
+   MODALS
 ========================================= */
 
 function openLogin() {
@@ -187,12 +183,12 @@ function closesignup() {
 loginBtn?.addEventListener("click", openLogin);
 signupBtn?.addEventListener("click", openSignup);
 
-document.getElementById("showSignupLink")?.addEventListener("click", event => {
+$("showSignupLink")?.addEventListener("click", event => {
     event.preventDefault();
     openSignup();
 });
 
-document.getElementById("showLoginLink")?.addEventListener("click", event => {
+$("showLoginLink")?.addEventListener("click", event => {
     event.preventDefault();
     openLogin();
 });
@@ -200,160 +196,161 @@ document.getElementById("showLoginLink")?.addEventListener("click", event => {
 window.addEventListener("click", event => {
     if (event.target === loginModal) closeLogin();
     if (event.target === signupModal) closesignup();
-
-    const purchaseModal = document.getElementById("purchaseModal");
-    if (event.target === purchaseModal) closePurchase();
+    if (event.target === $("purchaseModal")) closePurchase();
 });
 
 /* =========================================
-   CREATE ACCOUNT - SUPABASE AUTH
+   SUPABASE CONNECTION CHECK
 ========================================= */
 
-const signupForm = document.getElementById("signupForm");
+function getSupabase() {
+    if (!supabase || !supabase.auth) {
+        throw new Error(
+            "Supabase did not initialize. Check the export in supabase.js and your project settings."
+        );
+    }
+    return supabase;
+}
 
-if (signupForm) {
-    signupForm.addEventListener("submit", async event => {
-        event.preventDefault();
+/* =========================================
+   CREATE ACCOUNT
+========================================= */
 
-        const email = document.getElementById("signupEmail").value.trim();
-        const password = document.getElementById("signupPassword").value;
-        const submitButton = signupForm.querySelector('button[type="submit"]');
+const signupForm = $("signupForm");
 
-        if (password.length < 6) {
+signupForm?.addEventListener("submit", async event => {
+    event.preventDefault();
+
+    const email = $("signupEmail").value.trim();
+    const password = $("signupPassword").value;
+    const button = signupForm.querySelector('button[type="submit"]');
+
+    if (password.length < 6) {
+        showMessage(
+            "signupMessage",
+            "Your password must contain at least 6 characters.",
+            true
+        );
+        return;
+    }
+
+    if (!email) {
+        showMessage("signupMessage", "Please enter your email address.", true);
+        return;
+    }
+
+    button.disabled = true;
+    button.textContent = "Creating account...";
+    showMessage("signupMessage", "Connecting to Supabase. Please wait...");
+
+    try {
+        const client = getSupabase();
+
+        const { data, error } = await client.auth.signUp({
+            email,
+            password
+        });
+
+        if (error) throw error;
+
+        if (data.session) {
             showMessage(
                 "signupMessage",
-                "Your password must contain at least 6 characters.",
+                "Account created successfully! You are now signed in."
+            );
+            signupForm.reset();
+        } else if (data.user) {
+            showMessage(
+                "signupMessage",
+                "Registration received. Check your email for a confirmation link before logging in."
+            );
+        } else {
+            showMessage(
+                "signupMessage",
+                "Supabase did not confirm registration. Please try again.",
                 true
             );
-            return;
+        }
+    } catch (error) {
+        console.error("SYBER MART registration error:", error);
+
+        let message = error?.message || "Account creation failed. Please try again.";
+
+        if (/already registered|already exists|already been registered/i.test(message)) {
+            message = "An account may already exist with this email. Try logging in instead.";
+        } else if (/invalid.*email/i.test(message)) {
+            message = "Please enter a valid email address.";
+        } else if (/password/i.test(message)) {
+            message = "Please check your password and try again.";
+        } else if (/failed to fetch|networkerror/i.test(message)) {
+            message = "Could not reach Supabase. Check your internet connection and supabase.js settings.";
         }
 
-        submitButton.disabled = true;
-        submitButton.textContent = "Creating account...";
-        showMessage("signupMessage", "Please wait while we create your account...");
-
-        try {
-            const supabase = await getSupabase();
-
-            const { data, error } = await supabase.auth.signUp({
-                email,
-                password
-            });
-
-            if (error) throw error;
-
-            if (data.session) {
-                showMessage(
-                    "signupMessage",
-                    "Account created successfully! You are now signed in."
-                );
-
-                signupForm.reset();
-
-                setTimeout(() => {
-                    closesignup();
-                }, 1500);
-            } else if (data.user) {
-                showMessage(
-                    "signupMessage",
-                    "Registration received! Check your email for a confirmation link before logging in."
-                );
-            } else {
-                showMessage(
-                    "signupMessage",
-                    "Registration could not be confirmed. Please try again.",
-                    true
-                );
-            }
-        } catch (error) {
-            console.error("SYBER MART registration error:", error);
-
-            let message = error.message || "Account creation failed. Please try again.";
-
-            if (/already registered|already exists|already been registered/i.test(message)) {
-                message = "An account may already exist with this email. Try logging in instead.";
-            } else if (/invalid.*email/i.test(message)) {
-                message = "Please enter a valid email address.";
-            } else if (/password/i.test(message)) {
-                message = "Please check your password and try again.";
-            }
-
-            showMessage("signupMessage", message, true);
-        } finally {
-            submitButton.disabled = false;
-            submitButton.textContent = "Create Account";
-        }
-    });
-}
+        showMessage("signupMessage", message, true);
+    } finally {
+        button.disabled = false;
+        button.textContent = "Create Account";
+    }
+});
 
 /* =========================================
-   LOGIN - SUPABASE AUTH
+   LOGIN
 ========================================= */
 
-const loginForm = document.getElementById("loginForm");
+const loginForm = $("loginForm");
 
-if (loginForm) {
-    loginForm.addEventListener("submit", async event => {
-        event.preventDefault();
+loginForm?.addEventListener("submit", async event => {
+    event.preventDefault();
 
-        const email = document.getElementById("loginEmail").value.trim();
-        const password = document.getElementById("loginPassword").value;
-        const submitButton = loginForm.querySelector('button[type="submit"]');
+    const email = $("loginEmail").value.trim();
+    const password = $("loginPassword").value;
+    const button = loginForm.querySelector('button[type="submit"]');
 
-        submitButton.disabled = true;
-        submitButton.textContent = "Logging in...";
-        showMessage("loginMessage", "Checking your login details...");
+    button.disabled = true;
+    button.textContent = "Logging in...";
+    showMessage("loginMessage", "Checking your login details...");
 
-        try {
-            const supabase = await getSupabase();
+    try {
+        const client = getSupabase();
 
-            const { data, error } = await supabase.auth.signInWithPassword({
-                email,
-                password
-            });
+        const { data, error } = await client.auth.signInWithPassword({
+            email,
+            password
+        });
 
-            if (error) throw error;
+        if (error) throw error;
 
-            if (data.user) {
-                showMessage("loginMessage", "Login successful!");
+        if (data.user) {
+            showMessage("loginMessage", "Login successful!");
+            if (loginBtn) loginBtn.textContent = "Account";
+            loginForm.reset();
 
-                if (loginBtn) {
-                    loginBtn.textContent = "Account";
-                }
-
-                loginForm.reset();
-
-                setTimeout(() => {
-                    closeLogin();
-                }, 1200);
-            } else {
-                showMessage(
-                    "loginMessage",
-                    "Login could not be completed. Please try again.",
-                    true
-                );
-            }
-        } catch (error) {
-            console.error("SYBER MART login error:", error);
-
-            let message = error.message || "Login failed. Please try again.";
-
-            if (/invalid login credentials/i.test(message)) {
-                message = "Incorrect email or password. Please check and try again.";
-            } else if (/email not confirmed/i.test(message)) {
-                message = "Please confirm your email using the link sent to your inbox.";
-            }
-
-            showMessage("loginMessage", message, true);
-        } finally {
-            submitButton.disabled = false;
-            submitButton.textContent = "Login";
+            setTimeout(closeLogin, 1200);
+        } else {
+            showMessage("loginMessage", "Login could not be completed. Please try again.", true);
         }
-    });
-}
+    } catch (error) {
+        console.error("SYBER MART login error:", error);
+
+        let message = error?.message || "Login failed. Please try again.";
+
+        if (/invalid login credentials/i.test(message)) {
+            message = "Incorrect email or password. Please check and try again.";
+        } else if (/email not confirmed/i.test(message)) {
+            message = "Please confirm your email using the link sent to your inbox.";
+        } else if (/failed to fetch|networkerror/i.test(message)) {
+            message = "Could not reach Supabase. Check your internet connection and supabase.js settings.";
+        }
+
+        showMessage("loginMessage", message, true);
+    } finally {
+        button.disabled = false;
+        button.textContent = "Login";
+    }
+});
 
 /* =========================================
-   MAKE FUNCTIONS AVAILABLE TO HTML
+   EXPOSE FUNCTIONS USED BY HTML
 ========================================= */
 
 window.selectNetwork = selectNetwork;
@@ -366,7 +363,7 @@ window.openSignup = openSignup;
 window.closesignup = closesignup;
 
 /* =========================================
-   DEFAULT BUNDLES
+   INITIAL BUNDLES
 ========================================= */
 
 selectNetwork("MTN");
