@@ -1,136 +1,73 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>SYBER MART - Data & Airtime</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- HEADER -->
     <header class="header">
-        <div class="logo">
-            <span>SYBER</span> MART
-        </div>
-
+        <div class="logo"><span>SYBER</span> MART</div>
         <div class="header-actions">
-            <button id="loginBtn" class="login-btn" type="button">
-                Login
-            </button>
-            <button id="createAccountBtn" class="createAccount-btn" type="button">
-                Create Account
-            </button>
-            <button id="menuBtn" class="menu-btn" type="button" aria-label="Open menu">
-                ☰
-            </button>
+            <button id="loginBtn" class="login-btn" type="button">Login</button>
+            <button id="createAccountBtn" class="createAccount-btn" type="button">Create Account</button>
+            <button id="menuBtn" class="menu-btn" type="button" aria-label="Open menu">☰</button>
         </div>
     </header>
 
-    <!-- HERO -->
     <section class="hero">
         <div class="hero-content">
             <p class="hero-small">FAST • SECURE • RELIABLE</p>
-
-            <h1>
-                Buy Data & Airtime
-                <br>
-                <span>Instantly</span>
-            </h1>
-
-            <p class="hero-text">
-                Get affordable data bundles and airtime
-                from your favourite networks.
-            </p>
-
-            <button class="hero-btn" type="button" onclick="scrollToBundles()">
-                Buy Data
-            </button>
+            <h1>Buy Data & Airtime<br><span>Instantly</span></h1>
+            <p class="hero-text">Get affordable data bundles and airtime from your favourite networks.</p>
+            <button class="hero-btn" type="button" onclick="scrollToBundles()">Buy Data</button>
         </div>
     </section>
 
-    <!-- NETWORKS -->
     <section class="section">
         <div class="section-title">
             <h2>Choose Your Network</h2>
             <p>Select a network to view available bundles.</p>
         </div>
-
         <div class="network-grid">
             <button class="network-card mtn" type="button" onclick="selectNetwork('MTN')">
-                <div class="network-logo">MTN</div>
-                <h3>MTN</h3>
-                <p>Data Bundles</p>
+                <div class="network-logo">MTN</div><h3>MTN</h3><p>Data Bundles</p>
             </button>
-
             <button class="network-card telecel" type="button" onclick="selectNetwork('Telecel')">
-                <div class="network-logo">Telecel</div>
-                <h3>Telecel</h3>
-                <p>Data Bundles</p>
+                <div class="network-logo">Telecel</div><h3>Telecel</h3><p>Data Bundles</p>
             </button>
-
             <button class="network-card airteltigo" type="button" onclick="selectNetwork('AirtelTigo')">
-                <div class="network-logo">AT</div>
-                <h3>AirtelTigo</h3>
-                <p>Data Bundles</p>
+                <div class="network-logo">AT</div><h3>AirtelTigo</h3><p>Data Bundles</p>
             </button>
         </div>
     </section>
 
-    <!-- DATA BUNDLES -->
     <section class="section bundles-section" id="bundles">
         <div class="section-title">
             <h2>Popular Data Bundles</h2>
             <p id="selectedNetwork">Choose a network above</p>
         </div>
-
-        <div id="bundleContainer" class="bundle-grid">
-            <!-- Bundles are loaded by JavaScript -->
-        </div>
+        <div id="bundleContainer" class="bundle-grid"></div>
     </section>
 
-    <!-- HOW IT WORKS -->
     <section class="how-section">
         <div class="section-title">
             <h2>How It Works</h2>
             <p>Buying data is simple.</p>
         </div>
-
         <div class="steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <h3>Choose Network</h3>
-                <p>Select MTN, Telecel or AirtelTigo.</p>
-            </div>
-
-            <div class="step">
-                <div class="step-number">2</div>
-                <h3>Select Bundle</h3>
-                <p>Choose the data bundle you want.</p>
-            </div>
-
-            <div class="step">
-                <div class="step-number">3</div>
-                <h3>Make Payment</h3>
-                <p>Pay securely using available payment methods.</p>
-            </div>
-
-            <div class="step">
-                <div class="step-number">4</div>
-                <h3>Receive Data</h3>
-                <p>Your data is delivered to the recipient.</p>
-            </div>
+            <div class="step"><div class="step-number">1</div><h3>Choose Network</h3><p>Select MTN, Telecel or AirtelTigo.</p></div>
+            <div class="step"><div class="step-number">2</div><h3>Select Bundle</h3><p>Choose the data bundle you want.</p></div>
+            <div class="step"><div class="step-number">3</div><h3>Make Payment</h3><p>Pay securely using available payment methods.</p></div>
+            <div class="step"><div class="step-number">4</div><h3>Receive Data</h3><p>Your data is delivered to the recipient.</p></div>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="footer">
-        <div class="logo">
-            <span>SYBER</span> MART
-        </div>
+        <div class="logo"><span>SYBER</span> MART</div>
         <p>© 2026 SYBER MART. All rights reserved.</p>
     </footer>
 
@@ -138,40 +75,15 @@
     <div id="loginModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
         <div class="modal-box">
             <button class="close-btn" type="button" onclick="closeLogin()" aria-label="Close login">×</button>
-
             <h2 id="loginTitle">Welcome Back</h2>
             <p>Login to your SYBER MART account.</p>
-
-            <form id="loginForm">
-                <input
-                    type="email"
-                    id="loginEmail"
-                    name="email"
-                    placeholder="Email address"
-                    autocomplete="email"
-                    required
-                >
-
-                <input
-                    type="password"
-                    id="loginPassword"
-                    name="password"
-                    placeholder="Password"
-                    autocomplete="current-password"
-                    required
-                >
-
+            <form id="loginForm" onsubmit="return false;">
+                <input type="email" id="loginEmail" name="email" placeholder="Email address" autocomplete="email" required>
+                <input type="password" id="loginPassword" name="password" placeholder="Password" autocomplete="current-password" required>
                 <p id="loginMessage" role="status" aria-live="polite"></p>
-
-                <button type="submit" class="submit-btn">
-                    Login
-                </button>
+                <button type="submit" class="submit-btn">Login</button>
             </form>
-
-            <p class="signup-text">
-                Don't have an account?
-                <a href="#createaccountmodal" id="showSignupLink">Create one</a>
-            </p>
+            <p class="signup-text">Don't have an account? <a href="#createaccountmodal" id="showSignupLink">Create one</a></p>
         </div>
     </div>
 
@@ -179,126 +91,39 @@
     <div id="createaccountmodal" class="modal" role="dialog" aria-modal="true" aria-labelledby="signupTitle">
         <div class="modal-box">
             <button class="close-btn" type="button" onclick="closesignup()" aria-label="Close account creation">×</button>
-
             <h2 id="signupTitle">Welcome To SYBER MART</h2>
             <p>Create your SYBER MART account.</p>
-
-            <form id="signupForm">
-                <input
-                    type="email"
-                    id="signupEmail"
-                    name="email"
-                    placeholder="Email address"
-                    autocomplete="email"
-                    required
-                >
-
-                <input
-                    type="password"
-                    id="signupPassword"
-                    name="new-password"
-                    placeholder="Password (at least 6 characters)"
-                    autocomplete="new-password"
-                    minlength="6"
-                    required
-                >
-
+            <form id="signupForm" onsubmit="return false;">
+                <input type="email" id="signupEmail" name="email" placeholder="Email address" autocomplete="email" required>
+                <input type="password" id="signupPassword" name="new-password" placeholder="Password (at least 6 characters)" autocomplete="new-password" minlength="6" required>
                 <p id="signupMessage" role="status" aria-live="polite"></p>
-
-                <button type="submit" class="submit-btn">
-                    Create Account
-                </button>
+                <button type="submit" class="submit-btn">Create Account</button>
             </form>
-
-            <p class="signup-text">
-                Already have an account?
-                <a href="#loginModal" id="showLoginLink">Log in</a>
-            </p>
+            <p class="signup-text">Already have an account? <a href="#loginModal" id="showLoginLink">Log in</a></p>
         </div>
     </div>
 
-    <!-- DATA PURCHASE MODAL -->
+    <!-- DATA PURCHASE MODAL: DEMO ONLY -->
     <div id="purchaseModal" class="modal">
         <div class="modal-box">
             <button class="close-btn" type="button" onclick="closePurchase()" aria-label="Close purchase">×</button>
-
             <h2>Buy Data Bundle</h2>
             <p>Confirm your bundle and recipient details.</p>
-
             <div class="order-summary">
                 <p>Network: <strong id="orderNetwork"></strong></p>
                 <p>Bundle: <strong id="orderSize"></strong></p>
                 <p>Price: <strong id="orderPrice"></strong></p>
             </div>
-
-            <form id="purchaseForm">
+            <form id="purchaseForm" onsubmit="return false;">
                 <label for="recipientPhone">Recipient phone number</label>
-                <input
-                    type="tel"
-                    id="recipientPhone"
-                    placeholder="e.g. 0241234567"
-                    inputmode="tel"
-                    autocomplete="tel"
-                    required
-                >
-
+                <input type="tel" id="recipientPhone" placeholder="e.g. 0241234567" inputmode="tel" autocomplete="tel" required>
                 <p id="purchaseMessage" role="status" aria-live="polite"></p>
-
-                <button type="submit" class="submit-btn">
-                    Place Order
-                </button>
+                <button type="submit" class="submit-btn">Place Order</button>
             </form>
-
-            <p class="signup-text">
-                Demo only — no payment will be taken and no data will be sent.
-            </p>
+            <p class="signup-text">Demo only — no payment will be taken and no data will be sent.</p>
         </div>
     </div>
 
-    <script type="module" src="app.js"></script>
-
-    <!-- Modal opening and switching; authentication is handled by app.js. -->
-    <script>
-        const loginModalElement = document.getElementById("loginModal");
-        const signupModalElement = document.getElementById("createaccountmodal");
-
-        function openLogin() {
-            signupModalElement.style.display = "none";
-            loginModalElement.style.display = "flex";
-        }
-
-        function closeLogin() {
-            loginModalElement.style.display = "none";
-        }
-
-        function openSignup() {
-            loginModalElement.style.display = "none";
-            signupModalElement.style.display = "flex";
-        }
-
-        function closesignup() {
-            signupModalElement.style.display = "none";
-        }
-
-        document.getElementById("loginBtn").addEventListener("click", openLogin);
-        document.getElementById("createAccountBtn").addEventListener("click", openSignup);
-        document.getElementById("showSignupLink").addEventListener("click", function (event) {
-            event.preventDefault();
-            openSignup();
-        });
-        document.getElementById("showLoginLink").addEventListener("click", function (event) {
-            event.preventDefault();
-            openLogin();
-        });
-
-        [loginModalElement, signupModalElement].forEach(function (modal) {
-            modal.addEventListener("click", function (event) {
-                if (event.target === modal) {
-                    modal.style.display = "none";
-                }
-            });
-        });
-    </script>
-
+    <script type="module" src="./app.js"></script>
 </body>
 </html>
