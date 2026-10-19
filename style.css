@@ -10,7 +10,6 @@ body {
     color: #171717;
 }
 
-
 /* =========================
    HEADER
 ========================= */
@@ -61,7 +60,6 @@ body {
     font-size: 25px;
     cursor: pointer;
 }
-
 
 /* =========================
    HERO
@@ -119,7 +117,6 @@ body {
     cursor: pointer;
 }
 
-
 /* =========================
    SECTIONS
 ========================= */
@@ -141,7 +138,6 @@ body {
 .section-title p {
     color: #777777;
 }
-
 
 /* =========================
    NETWORKS
@@ -197,7 +193,6 @@ body {
     color: #777777;
 }
 
-
 /* =========================
    BUNDLES
 ========================= */
@@ -246,7 +241,6 @@ body {
     cursor: pointer;
 }
 
-
 /* =========================
    HOW IT WORKS
 ========================= */
@@ -294,7 +288,6 @@ body {
     line-height: 1.5;
 }
 
-
 /* =========================
    FOOTER
 ========================= */
@@ -314,7 +307,6 @@ body {
     color: #aaaaaa;
     font-size: 14px;
 }
-
 
 /* =========================
    MODAL
@@ -403,7 +395,6 @@ body {
     font-weight: 700;
 }
 
-
 /* =========================
    MOBILE
 ========================= */
@@ -443,7 +434,6 @@ body {
         gap: 35px 15px;
     }
 }
-
 
 @media (max-width: 500px) {
 
@@ -495,3 +485,37 @@ body {
     max-height: 90vh;
     overflow-y: auto;
 }
+
+/* CREATE ACCOUNT BUTTON - MATCH LOGIN */
+
+.create-account-btn,
+.signup-btn,
+.register-btn {
+    background: #111111;
+    color: #ffffff;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.create-account-btn:hover,
+.signup-btn:hover,
+.register-btn:hover {
+    background: #292929;
+}
+
+@media (max-width: 500px) {
+    .create-account-btn,
+    .signup-btn,
+    .register-btn {
+        padding: 9px 15px;
+    }
+}
+
