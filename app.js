@@ -39,26 +39,9 @@ const signupModal = document.getElementById("createaccountmodal");
    Uses your existing supabase.js file.
 ========================================= */
 
-let supabaseClient = null;
 
-async function getSupabase() {
-    if (supabaseClient) return supabaseClient;
-
-    try {
-        const module = await import("./supabase.js");
-        supabaseClient = module.supabase;
-
-        if (!supabaseClient) {
-            throw new Error("The Supabase client was not exported.");
-        }
-
-        return supabaseClient;
-    } catch (error) {
-        console.error("Supabase connection error:", error);
-        throw new Error(
-            "Cannot connect to Supabase. Please check supabase.js and try again."
-        );
-    }
+function getSupabase() {
+    return supabase;
 }
 
 function showMessage(elementId, message, isError = false) {
