@@ -134,46 +134,56 @@
         <p>© 2026 SYBER MART. All rights reserved.</p>
     </footer>
 
-    <!-- LOGIN MODAL -->
-    <div id="loginModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
-        <div class="modal-box">
-            <button class="close-btn" type="button" onclick="closeLogin()" aria-label="Close login">×</button>
+    
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="modal">
+    <div class="modal-box">
+        <button class="close-btn" onclick="closeLogin()" type="button">×</button>
 
-            <h2 id="loginTitle">Welcome Back</h2>
-            <p>Login to your SYBER MART account.</p>
+        <h2 id="authTitle">Welcome Back</h2>
+        <p id="authDescription">Login to your SYBER DATA HUB account.</p>
 
-            <form id="loginForm">
+        <form id="authForm">
+            <div id="nameField" style="display:none;">
                 <input
-                    type="email"
-                    id="loginEmail"
-                    name="email"
-                    placeholder="Email address"
-                    autocomplete="email"
-                    required
+                    type="text"
+                    id="fullName"
+                    placeholder="Full name"
+                    autocomplete="name"
                 >
+            </div>
 
-                <input
-                    type="password"
-                    id="loginPassword"
-                    name="password"
-                    placeholder="Password"
-                    autocomplete="current-password"
-                    required
-                >
+            <input
+                type="email"
+                id="email"
+                placeholder="Email address"
+                autocomplete="email"
+                required
+            >
 
-                <p id="loginMessage" role="status" aria-live="polite"></p>
+            <input
+                type="password"
+                id="password"
+                placeholder="Password (minimum 6 characters)"
+                autocomplete="current-password"
+                minlength="6"
+                required
+            >
 
-                <button type="submit" class="submit-btn">
-                    Login
-                </button>
-            </form>
+            <p id="authMessage" role="status" aria-live="polite"></p>
 
-            <p class="signup-text">
-                Don't have an account?
-                <a href="#createaccountmodal" id="showSignupLink">Create one</a>
-            </p>
-        </div>
+            <button class="submit-btn" id="authSubmit" type="submit">
+                Login
+            </button>
+        </form>
+
+        <p class="signup-text">
+            <span id="authSwitchText">Don't have an account?</span>
+            <a href="#" id="authSwitch">Create one</a>
+        </p>
     </div>
+</div>
+
 
     <!-- CREATE ACCOUNT MODAL -->
     <div id="createaccountmodal" class="modal" role="dialog" aria-modal="true" aria-labelledby="signupTitle">
