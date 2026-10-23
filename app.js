@@ -51,8 +51,21 @@ function updateAuthMode() {
 console.log("Login button:", loginBtn);
 console.log("Login modal:", authModal);
 console.log("Open modal function:", typeof openAuthModal);
-loginBtn?.addEventListener("click", openAuthModal);
-closeAuthBtn?.addEventListener("click", closeAuthModal);
+if (loginBtn) {
+  loginBtn.onclick = function (event) {
+    event.preventDefault();
+    authModal.hidden = false;
+    authModal.style.display = "flex";
+    showMessage("");
+  };
+}
+
+if (closeAuthBtn) {
+  closeAuthBtn.onclick = function () {
+    authModal.hidden = true;
+    authModal.style.display = "none";
+  };
+}
 
 authModal?.addEventListener("click", (event) => {
   if (event.target === authModal) closeAuthModal();
