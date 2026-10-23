@@ -366,3 +366,90 @@ button {
     letter-spacing: -1px;
   }
 }
+
+/* Customer login and registration modal */
+.auth-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.65);
+  overflow-y: auto;
+}
+
+.auth-modal[hidden] {
+  display: none !important;
+}
+
+.auth-box {
+  width: 100%;
+  max-width: 420px;
+  margin: auto;
+  padding: 24px;
+  background: #ffffff;
+  color: #222222;
+  border-radius: 14px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+.auth-box h2 {
+  margin: 12px 0 20px;
+  color: #ff7900;
+  text-align: center;
+}
+
+.auth-box label {
+  display: block;
+  margin: 12px 0 6px;
+  font-weight: 600;
+}
+
+.auth-box input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.auth-box button {
+  cursor: pointer;
+}
+
+#authSubmitBtn,
+#toggleAuthBtn {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+}
+
+#authSubmitBtn {
+  background: #ff7900;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+#toggleAuthBtn {
+  background: transparent;
+  color: #b65300;
+}
+
+#closeAuthBtn {
+  float: right;
+  padding: 6px 10px;
+  border: none;
+  background: transparent;
+  font-size: 22px;
+}
+
+#authMessage {
+  overflow-wrap: anywhere;
+}
+
