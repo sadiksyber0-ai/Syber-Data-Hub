@@ -1,5 +1,5 @@
 
-import { supabase } from "./supabase.js";
+import { supabase } from "./Supabase.js";
 
 const loginBtn = document.getElementById("loginBtn");
 const authModal = document.getElementById("authModal");
