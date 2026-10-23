@@ -15,6 +15,18 @@
       SYBER <span>DATA HUB</span>
     </a>
    <button id="loginBtn">Login</button>
+    <script>
+document.getElementById("loginBtn")?.addEventListener("click", function () {
+  const modal = document.getElementById("authModal");
+  if (modal) {
+    modal.hidden = false;
+    modal.style.display = "flex";
+    alert("Login button works. Modal found.");
+  } else {
+    alert("Login modal not found.");
+  }
+});
+</script>
    <!-- Customer Login and Registration Modal -->
    <div id="authModal" class="auth-modal" hidden>
    <div class="auth-box">
