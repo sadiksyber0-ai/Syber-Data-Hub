@@ -14,9 +14,42 @@
     <a class="logo" href="#" aria-label="SYBER DATA HUB home">
       SYBER <span>DATA HUB</span>
     </a>
-    <button id="loginBtn" class="button button-outline" type="button">
-      Login
+   
+<!-- Customer Login and Registration Modal -->
+<div id="authModal" class="auth-modal" hidden>
+  <div class="auth-box">
+    <button type="button" id="closeAuthBtn" aria-label="Close">✕</button>
+
+    <h2 id="authTitle">Customer Login</h2>
+
+    <form id="authForm">
+      <div id="nameField" hidden>
+        <label for="authName">Full name</label>
+        <input id="authName" type="text" autocomplete="name">
+      </div>
+
+      <div id="phoneField" hidden>
+        <label for="authPhone">Phone number</label>
+        <input id="authPhone" type="tel" autocomplete="tel">
+      </div>
+
+      <label for="authEmail">Email address</label>
+      <input id="authEmail" type="email" autocomplete="email" required>
+
+      <label for="authPassword">Password</label>
+      <input id="authPassword" type="password" autocomplete="current-password" minlength="6" required>
+
+      <button type="submit" id="authSubmitBtn">Sign In</button>
+    </form>
+
+    <p id="authMessage" role="status"></p>
+
+    <button type="button" id="toggleAuthBtn">
+      New customer? Create an account
     </button>
+  </div>
+</div>
+
   </header>
 
   <main>
