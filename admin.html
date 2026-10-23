@@ -4,107 +4,82 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SYBER MART Admin Dashboard</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; background: #f4f6f9; color: #222;
-      font-family: Arial, sans-serif;
-    }
-    header {
-      background: #171717; color: white; padding: 18px;
-      display: flex; justify-content: space-between;
-      align-items: center; gap: 10px; flex-wrap: wrap;
-    }
-    header strong { color: #ff7900; }
-    main { max-width: 1100px; margin: auto; padding: 18px; }
-    .panel {
-      background: white; padding: 18px; margin-bottom: 20px;
-      border-radius: 12px; box-shadow: 0 2px 9px #0000000d;
-      overflow-x: auto;
-    }
-    .stats {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 12px; margin-bottom: 20px;
-    }
-    .stat { background: white; padding: 16px; border-radius: 10px; }
-    .stat strong { display: block; font-size: 24px; margin-top: 8px; }
-    input, select, button {
-      font: inherit; padding: 11px; border-radius: 7px;
-    }
-    input, select { border: 1px solid #ccc; width: 100%; }
-    button {
-      border: 0; cursor: pointer; background: #ff7900;
-      color: white; font-weight: bold;
-    }
-    button:disabled { opacity: .5; cursor: not-allowed; }
-    .secondary { background: #333; }
-    .danger { background: #b42318; }
-    form { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    form button { grid-column: 1 / -1; }
-    table { width: 100%; border-collapse: collapse; min-width: 650px; }
-    th, td { padding: 12px; border-bottom: 1px solid #eee; text-align: left; }
-    th { background: #f8f8f8; }
-    td button { margin: 3px; }
-    .message { white-space: pre-wrap; margin: 12px 0; }
-    .hint { color: #666; font-size: 14px; }
-    @media(max-width: 600px) {
-      .stats { grid-template-columns: 1fr; }
-      form { grid-template-columns: 1fr; }
-      form button { grid-column: auto; }
-      main { padding: 10px; }
-    }
-  </style>
+  <meta name="theme-color" content="#ff7900">
+  <meta name="description" content="SYBER DATA HUB — Your destination for Ghana mobile data bundles.">
+  <title>SYBER DATA HUB | Buy Data Bundles</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div><strong>SYBER</strong> MART — Admin</div>
-    <button id="logoutBtn" class="secondary">Log out</button>
+  <header class="site-header">
+    <a class="logo" href="#" aria-label="SYBER DATA HUB home">
+      SYBER <span>DATA HUB</span>
+    </a>
+    <button id="loginBtn" class="button button-outline" type="button">
+      Login
+    </button>
   </header>
 
   <main>
-    <p id="message" class="message" role="status">Loading dashboard…</p>
-
-    <section class="stats">
-      <div class="stat">Total orders<strong id="totalOrders">0</strong></div>
-      <div class="stat">Pending orders<strong id="pendingOrders">0</strong></div>
-      <div class="stat">Delivered orders<strong id="deliveredOrders">0</strong></div>
+    <section class="hero">
+      <p class="eyebrow">YOUR DATA. YOUR CONNECTION.</p>
+      <h1>Stay connected for less.</h1>
+      <p>Choose your network and explore available data bundles.</p>
+      <a class="button button-primary" href="#networks">Explore bundles</a>
     </section>
 
-    <section class="panel">
-      <h2>Manage data prices</h2>
-      <p class="hint">Choose a bundle to edit it, or enter a new bundle.</p>
-      <form id="priceForm">
-        <input id="priceId" type="hidden">
-        <select id="network" required>
-          <option value="MTN">MTN</option>
-          <option value="Telecel">Telecel</option>
-          <option value="AirtelTigo">AirtelTigo</option>
-        </select>
-        <input id="size" placeholder="Bundle size e.g. 3GB" required>
-        <input id="price" type="number" min="0" step="0.01"
-               placeholder="Price in GH₵" required>
-        <button type="submit">Save bundle price</button>
-        <button type="button" id="clearPrice" class="secondary">
-          Clear form
+    <section id="networks" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">CHOOSE YOUR NETWORK</p>
+        <h2>Which network do you use?</h2>
+      </div>
+
+      <div class="network-grid">
+        <button class="network-card" type="button" data-network="MTN">
+          <span class="network-symbol mtn">M</span>
+          <span>MTN</span>
+          <span class="network-hint">View bundles →</span>
         </button>
-      </form>
-      <div id="pricesMessage" class="message" role="status"></div>
-      <div id="pricesTable"></div>
+
+        <button class="network-card" type="button" data-network="Telecel">
+          <span class="network-symbol telecel">T</span>
+          <span>Telecel</span>
+          <span class="network-hint">View bundles →</span>
+        </button>
+
+        <button class="network-card" type="button" data-network="AirtelTigo">
+          <span class="network-symbol airteltigo">A</span>
+          <span>AirtelTigo (AT)</span>
+          <span class="network-hint">View bundles →</span>
+        </button>
+      </div>
     </section>
 
-    <section class="panel">
-      <h2>Customer orders</h2>
-      <button id="refreshOrders" class="secondary">Refresh orders</button>
-      <div id="ordersMessage" class="message" role="status"></div>
-      <div id="ordersTable"></div>
+    <section id="bundles" class="section bundles-section">
+      <div class="section-heading">
+        <p class="eyebrow">AVAILABLE PACKAGES</p>
+        <h2 id="selectedNetwork">Choose a network</h2>
+        <p id="bundleNotice" class="muted">
+          Bundle prices and availability will be confirmed when a supplier is connected.
+        </p>
+      </div>
+      <div id="bundleContainer" class="bundle-grid">
+        <p class="muted">Select a network above to continue.</p>
+      </div>
     </section>
 
-    <p class="hint">
-      Mark an order delivered only after confirming that the data was actually sent.
-    </p>
+    <section class="trust-section">
+      <h2>Simple. Secure. Convenient.</h2>
+      <p>Our goal is to provide reliable data purchases with verified payments and order tracking.</p>
+      <p class="muted">Live purchases will be enabled after payment and supplier integration are tested.</p>
+    </section>
   </main>
 
-  <script type="module" src="admin.js"></script>
+  <footer class="site-footer">
+    <a class="logo footer-logo" href="#">SYBER <span>DATA HUB</span></a>
+    <p>© <span id="year"></span> SYBER DATA HUB. All rights reserved.</p>
+    <p>Contact: <a href="mailto:support@syberdatahub.com">support@syberdatahub.com</a></p>
+  </footer>
+
+  <script type="module" src="app.js"></script>
 </body>
 </html>
