@@ -1,314 +1,85 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>SYBER MART - Data & Airtime</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ff7900">
+  <meta name="description" content="SYBER DATA HUB — Your destination for Ghana mobile data bundles.">
+  <title>SYBER DATA HUB | Buy Data Bundles</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <header class="site-header">
+    <a class="logo" href="#" aria-label="SYBER DATA HUB home">
+      SYBER <span>DATA HUB</span>
+    </a>
+    <button id="loginBtn" class="button button-outline" type="button">
+      Login
+    </button>
+  </header>
 
-    <!-- HEADER -->
-    <header class="header">
-        <div class="logo">
-            <span>SYBER</span> MART
-        </div>
-
-        <div class="header-actions">
-            <button id="loginBtn" class="login-btn" type="button">
-                Login
-            </button>
-            <button id="createAccountBtn" class="createAccount-btn" type="button">
-                Create Account
-            </button>
-            <button id="menuBtn" class="menu-btn" type="button" aria-label="Open menu">
-                ☰
-            </button>
-        </div>
-    </header>
-
-    <!-- HERO -->
+  <main>
     <section class="hero">
-        <div class="hero-content">
-            <p class="hero-small">FAST • SECURE • RELIABLE</p>
-
-            <h1>
-                Buy Data & Airtime
-                <br>
-                <span>Instantly</span>
-            </h1>
-
-            <p class="hero-text">
-                Get affordable data bundles and airtime
-                from your favourite networks.
-            </p>
-
-            <button class="hero-btn" type="button" onclick="scrollToBundles()">
-                Buy Data
-            </button>
-        </div>
+      <p class="eyebrow">YOUR DATA. YOUR CONNECTION.</p>
+      <h1>Stay connected for less.</h1>
+      <p>Choose your network and explore available data bundles.</p>
+      <a class="button button-primary" href="#networks">Explore bundles</a>
     </section>
 
-    <!-- NETWORKS -->
-    <section class="section">
-        <div class="section-title">
-            <h2>Choose Your Network</h2>
-            <p>Select a network to view available bundles.</p>
-        </div>
+    <section id="networks" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">CHOOSE YOUR NETWORK</p>
+        <h2>Which network do you use?</h2>
+      </div>
 
-        <div class="network-grid">
-            <button class="network-card mtn" type="button" onclick="selectNetwork('MTN')">
-                <div class="network-logo">MTN</div>
-                <h3>MTN</h3>
-                <p>Data Bundles</p>
-            </button>
+      <div class="network-grid">
+        <button class="network-card" type="button" data-network="MTN">
+          <span class="network-symbol mtn">M</span>
+          <span>MTN</span>
+          <span class="network-hint">View bundles →</span>
+        </button>
 
-            <button class="network-card telecel" type="button" onclick="selectNetwork('Telecel')">
-                <div class="network-logo">Telecel</div>
-                <h3>Telecel</h3>
-                <p>Data Bundles</p>
-            </button>
+        <button class="network-card" type="button" data-network="Telecel">
+          <span class="network-symbol telecel">T</span>
+          <span>Telecel</span>
+          <span class="network-hint">View bundles →</span>
+        </button>
 
-            <button class="network-card airteltigo" type="button" onclick="selectNetwork('AirtelTigo')">
-                <div class="network-logo">AT</div>
-                <h3>AirtelTigo</h3>
-                <p>Data Bundles</p>
-            </button>
-        </div>
+        <button class="network-card" type="button" data-network="AirtelTigo">
+          <span class="network-symbol airteltigo">A</span>
+          <span>AirtelTigo (AT)</span>
+          <span class="network-hint">View bundles →</span>
+        </button>
+      </div>
     </section>
 
-    <!-- DATA BUNDLES -->
-    <section class="section bundles-section" id="bundles">
-        <div class="section-title">
-            <h2>Popular Data Bundles</h2>
-            <p id="selectedNetwork">Choose a network above</p>
-        </div>
-
-        <div id="bundleContainer" class="bundle-grid">
-            <!-- Bundles are loaded by JavaScript -->
-        </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section class="how-section">
-        <div class="section-title">
-            <h2>How It Works</h2>
-            <p>Buying data is simple.</p>
-        </div>
-
-        <div class="steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <h3>Choose Network</h3>
-                <p>Select MTN, Telecel or AirtelTigo.</p>
-            </div>
-
-            <div class="step">
-                <div class="step-number">2</div>
-                <h3>Select Bundle</h3>
-                <p>Choose the data bundle you want.</p>
-            </div>
-
-            <div class="step">
-                <div class="step-number">3</div>
-                <h3>Make Payment</h3>
-                <p>Pay securely using available payment methods.</p>
-            </div>
-
-            <div class="step">
-                <div class="step-number">4</div>
-                <h3>Receive Data</h3>
-                <p>Your data is delivered to the recipient.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="logo">
-            <span>SYBER</span> MART
-        </div>
-        <p>© 2026 SYBER MART. All rights reserved.</p>
-    </footer>
-
-    
-<!-- LOGIN MODAL -->
-<div id="loginModal" class="modal">
-    <div class="modal-box">
-        <button class="close-btn" onclick="closeLogin()" type="button">×</button>
-
-        <h2 id="authTitle">Welcome Back</h2>
-        <p id="authDescription">Login to your SYBER DATA HUB account.</p>
-
-        <form id="authForm">
-            <div id="nameField" style="display:none;">
-                <input
-                    type="text"
-                    id="fullName"
-                    placeholder="Full name"
-                    autocomplete="name"
-                >
-            </div>
-
-            <input
-                type="email"
-                id="email"
-                placeholder="Email address"
-                autocomplete="email"
-                required
-            >
-
-            <input
-                type="password"
-                id="password"
-                placeholder="Password (minimum 6 characters)"
-                autocomplete="current-password"
-                minlength="6"
-                required
-            >
-
-            <p id="authMessage" role="status" aria-live="polite"></p>
-
-            <button class="submit-btn" id="authSubmit" type="submit">
-                Login
-            </button>
-        </form>
-
-        <p class="signup-text">
-            <span id="authSwitchText">Don't have an account?</span>
-            <a href="#" id="authSwitch">Create one</a>
+    <section id="bundles" class="section bundles-section">
+      <div class="section-heading">
+        <p class="eyebrow">AVAILABLE PACKAGES</p>
+        <h2 id="selectedNetwork">Choose a network</h2>
+        <p id="bundleNotice" class="muted">
+          Bundle prices and availability will be confirmed when a supplier is connected.
         </p>
-    </div>
-</div>
+      </div>
+      <div id="bundleContainer" class="bundle-grid">
+        <p class="muted">Select a network above to continue.</p>
+      </div>
+    </section>
 
+    <section class="trust-section">
+      <h2>Simple. Secure. Convenient.</h2>
+      <p>Our goal is to provide reliable data purchases with verified payments and order tracking.</p>
+      <p class="muted">Live purchases will be enabled after payment and supplier integration are tested.</p>
+    </section>
+  </main>
 
-    <!-- CREATE ACCOUNT MODAL -->
-    <div id="createaccountmodal" class="modal" role="dialog" aria-modal="true" aria-labelledby="signupTitle">
-        <div class="modal-box">
-            <button class="close-btn" type="button" onclick="closesignup()" aria-label="Close account creation">×</button>
+  <footer class="site-footer">
+    <a class="logo footer-logo" href="#">SYBER <span>DATA HUB</span></a>
+    <p>© <span id="year"></span> SYBER DATA HUB. All rights reserved.</p>
+    <p>Contact: <a href="mailto:support@syberdatahub.com">support@syberdatahub.com</a></p>
+  </footer>
 
-            <h2 id="signupTitle">Welcome To SYBER MART</h2>
-            <p>Create your SYBER MART account.</p>
-
-            <form id="signupForm">
-                <input
-                    type="email"
-                    id="signupEmail"
-                    name="email"
-                    placeholder="Email address"
-                    autocomplete="email"
-                    required
-                >
-
-                <input
-                    type="password"
-                    id="signupPassword"
-                    name="new-password"
-                    placeholder="Password (at least 6 characters)"
-                    autocomplete="new-password"
-                    minlength="6"
-                    required
-                >
-
-                <p id="signupMessage" role="status" aria-live="polite"></p>
-
-                <button type="submit" class="submit-btn">
-                    Create Account
-                </button>
-            </form>
-
-            <p class="signup-text">
-                Already have an account?
-                <a href="#loginModal" id="showLoginLink">Log in</a>
-            </p>
-        </div>
-    </div>
-
-    <!-- DATA PURCHASE MODAL -->
-    <div id="purchaseModal" class="modal">
-        <div class="modal-box">
-            <button class="close-btn" type="button" onclick="closePurchase()" aria-label="Close purchase">×</button>
-
-            <h2>Buy Data Bundle</h2>
-            <p>Confirm your bundle and recipient details.</p>
-
-            <div class="order-summary">
-                <p>Network: <strong id="orderNetwork"></strong></p>
-                <p>Bundle: <strong id="orderSize"></strong></p>
-                <p>Price: <strong id="orderPrice"></strong></p>
-            </div>
-
-            <form id="purchaseForm">
-                <label for="recipientPhone">Recipient phone number</label>
-                <input
-                    type="tel"
-                    id="recipientPhone"
-                    placeholder="e.g. 0241234567"
-                    inputmode="tel"
-                    autocomplete="tel"
-                    required
-                >
-
-                <p id="purchaseMessage" role="status" aria-live="polite"></p>
-
-                <button type="submit" class="submit-btn">
-                    Place Order
-                </button>
-            </form>
-
-            <p class="signup-text">
-                Demo only — no payment will be taken and no data will be sent.
-            </p>
-        </div>
-    </div>
-
-    <script src="app.js"></script>
-
-    <!-- Modal opening and switching; authentication is handled by app.js. -->
-    <script>
-        const loginModalElement = document.getElementById("loginModal");
-        const signupModalElement = document.getElementById("createaccountmodal");
-
-        function openLogin() {
-            signupModalElement.style.display = "none";
-            loginModalElement.style.display = "flex";
-        }
-
-        function closeLogin() {
-            loginModalElement.style.display = "none";
-        }
-
-        function openSignup() {
-            loginModalElement.style.display = "none";
-            signupModalElement.style.display = "flex";
-        }
-
-        function closesignup() {
-            signupModalElement.style.display = "none";
-        }
-
-        document.getElementById("loginBtn").addEventListener("click", openLogin);
-        document.getElementById("createAccountBtn").addEventListener("click", openSignup);
-        document.getElementById("showSignupLink").addEventListener("click", function (event) {
-            event.preventDefault();
-            openSignup();
-        });
-        document.getElementById("showLoginLink").addEventListener("click", function (event) {
-            event.preventDefault();
-            openLogin();
-        });
-
-        [loginModalElement, signupModalElement].forEach(function (modal) {
-            modal.addEventListener("click", function (event) {
-                if (event.target === modal) {
-                    modal.style.display = "none";
-                }
-            });
-        });
-    </script>
-
+  <script type="module" src="app.js"></script>
 </body>
 </html>
