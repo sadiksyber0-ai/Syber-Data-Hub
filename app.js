@@ -48,7 +48,9 @@ function updateAuthMode() {
     : "New customer? Create an account";
   showMessage("");
 }
-
+console.log("Login button:", loginBtn);
+console.log("Login modal:", authModal);
+console.log("Open modal function:", typeof openAuthModal);
 loginBtn?.addEventListener("click", openAuthModal);
 closeAuthBtn?.addEventListener("click", closeAuthModal);
 
