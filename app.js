@@ -87,15 +87,18 @@ authForm?.addEventListener("submit", async (event) => {
   authSubmitBtn.disabled = true;
   showMessage(isSignup ? "Creating your account..." : "Signing you in...");
 
-  try {
-    if (isSignup) {
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: { full_name: fullName }
-        }
-      });
+  
+try {
+  if (isSignup) {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: "https://sadiksyber0-ai.github.io/Syber-Data-Hub/",
+        data: { full_name: fullName }
+      }
+    });
+
 
       if (error) throw error;
 
