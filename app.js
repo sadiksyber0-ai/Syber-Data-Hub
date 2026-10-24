@@ -151,5 +151,7 @@ async function restoreSession() {
 
 updateAuthMode();
 restoreSession();
-
+console.log("LOGIN DEBUG: app.js reached the end");
+console.log("LOGIN DEBUG: button found =", !!loginBtn);
+console.log("LOGIN DEBUG: modal found =", !!authModal);
 console.log("SYBER DATA HUB authentication loaded.");
